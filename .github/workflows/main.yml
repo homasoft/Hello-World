@@ -5,5 +5,6 @@ jobs:
     runs-on: windows-latest
     steps:
       - run: |
+         cmd
          cd /
          dir
