@@ -3,5 +3,5 @@ using namespace std;
 int main(int argc, char* argv[])
 {
   cout << "Hello World!!" << endl;
-  reutrn 0;
+  return 0;
 }
