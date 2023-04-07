@@ -5,6 +5,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          uname -a
-          pwd
-          ls -a
+          wget https://ftp.gnu.org/gnu/gcc/gcc-12.2.0/gcc-12.2.0.tar.gz
+          tar -xvzf gcc-12.2.0.tar.gz
+          ls
+          cd gcc-12.2.0
+          ls
