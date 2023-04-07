@@ -5,4 +5,4 @@ jobs:
     runs-on: windows-latest
     steps:
        - run: |
-          "C:\Program Files\7-zip\7z.exe --help"
+          cmd /c "C:\Program Files\7-zip\7z.exe" --help
