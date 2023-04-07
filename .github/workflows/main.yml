@@ -5,5 +5,4 @@ jobs:
     runs-on: windows-latest
     steps:
        - run: |
-          ls "C:\Program Files\7zip"
-          7zip --help
+          ls "C:\Program Files\"
