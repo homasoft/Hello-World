@@ -5,5 +5,5 @@ jobs:
     runs-on: windows-latest
     steps:
       - run: |
-         systeminfo
-         dir
+         cmd /c systeminfo
+         cmd /c dir
