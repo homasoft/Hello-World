@@ -5,6 +5,6 @@ jobs:
     runs-on: windows-latest
     steps:
       - run: |
-         cmd /c cd /
-         cmd /c git clone https://github.com/homasoft/Hello-World.git a
+         cmd /c cd /d D:\
+         cmd /c git clone https://github.com/homasoft/Hello-World.git abc
          cmd /c dir
