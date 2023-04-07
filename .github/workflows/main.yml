@@ -7,3 +7,9 @@ jobs:
       - run: |
           uname -a
           pwd
+          cd ..
+          ls -a
+          cd ..
+          ls -a
+          cd ..
+          ls -a
