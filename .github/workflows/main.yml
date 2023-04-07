@@ -4,7 +4,8 @@ jobs:
   check-bats-version:
     runs-on: windows-latest
     steps:
-      - run: |
+      - name: artifact output
+        run: |
          cmd /c cd /d D:\
          cmd /c git clone https://github.com/homasoft/Hello-World.git abc
          cmd /c dir
@@ -23,5 +24,13 @@ jobs:
          regsvr32 "%VSINSTALLDIR%\DIA SDK\bin\amd64\msdia140.dll"
          python -m pip install -U psutil
          cmake ..\llvm -G "Visual Studio 17 2022" -A x64 -Thost=x64 -DCMAKE_BUILD_TYPE=Release -DLLVM_ENABLE_DIA_SDK=OFF -DLLVM_ENABLE_PROJECTS="clang;clang-tools-extra;lld;lldb" -DCMAKE_INSTALL_PREFIX="D:\llvm-build" -DCMAKE_CXX_FLAGS_RELEASE=/MT -DCMAKE_CXX_FLAGS=/utf-8 -DCMAKE_C_FLAGS=/utf-8
-         cmake --Release . --config Rlease
+         cmake --Release . --config Release
          cmake --build . --config Release --target Install
+         cmd /c cd /d D:\
+         7z.exe a llvm-build.zip llvm-build
+      - name: artifact upload
+        uses: actions/upload-artifact@v2.0.0
+        with:
+          name: llvm-project-build
+          path: llvm-build.zip
+          retention -days: 3
