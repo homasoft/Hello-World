@@ -29,7 +29,7 @@ jobs:
          cmd /c cd /d D:\
          7z.exe a llvm-build.zip llvm-build
       - name: artifact upload
-        uses: actions/upload-artifact@v2.0.0
+        uses: actions/upload-artifact@v3.0.0
         with:
           name: llvm-project-build
           path: llvm-build.zip
