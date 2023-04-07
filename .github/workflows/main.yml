@@ -5,8 +5,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          wget https://ftp.gnu.org/gnu/gcc/gcc-12.2.0/gcc-12.2.0.tar.gz
-          tar -xvzf gcc-12.2.0.tar.gz
-          ls
-          cd gcc-12.2.0
-          ls
+         apt update
