@@ -5,8 +5,5 @@ jobs:
     runs-on: windows-latest
     steps:
       - run: |
-         cmd /c systeminfo
+         cmd /c cd /
          cmd /c dir
-         echo abc
-         cmd /c set PATH
-         echo defg
