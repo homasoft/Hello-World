@@ -3,7 +3,7 @@ on: [push]
 jobs:
   check-bats-version:
     runs-on: ubuntu-latest
-      steps:
-        - run: |
+    steps:
+      - run: |
           uname -a
           pwd
