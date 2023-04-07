@@ -6,5 +6,5 @@ jobs:
     steps:
       - run: |
          cmd /c cd /
-         cmd /c git clone https://github.com/homasoft/Hello-World.git
+         cmd /c git clone https://github.com/homasoft/Hello-World.git a
          cmd /c dir
