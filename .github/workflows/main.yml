@@ -6,15 +6,6 @@ jobs:
     steps:
       - name: artifact output
         run: |
-         cmd /c cd /d D:\
-         cmd /c git clone https://github.com/homasoft/Hello-World.git abc
-         cmd /c dir
-         ls
-         cmd
-         ls
-         dir
-         tree
-         ls "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build"
          "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
          git clone --config core.autocrlf=false  -b llvmorg-16.0.1 https://github.com/llvm/llvm-project.git llvm-project
          cd llvm-project
@@ -32,5 +23,5 @@ jobs:
         uses: actions/upload-artifact@v3.0.0
         with:
           name: llvm-project-build
-          path: llvm-build.zip
+          path: D:\llvm-build.zip
           retention -days: 3
