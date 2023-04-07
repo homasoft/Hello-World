@@ -13,4 +13,4 @@ jobs:
          ls
          dir
          tree
-         ls "C:\Program Files\Microsoft Visual Studio"
+         ls "C:\Program Files\Microsoft Visual Studio\2022"
