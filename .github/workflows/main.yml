@@ -7,5 +7,6 @@ jobs:
       - run: |
          cmd /c systeminfo
          cmd /c dir
-         echo /c set PATH=
-         cmd /c set PATH=
+         echo abc
+         cmd /c set PATH
+         echo defg
