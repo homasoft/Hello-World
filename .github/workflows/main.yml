@@ -4,5 +4,24 @@ jobs:
   check-bats-version:
     runs-on: windows-latest
     steps:
-       - run: |
-          cmd /c "C:\Program Files\7-zip\7z.exe" --help
+      - name: artifact output
+        run: |
+         C:\"Program Files\Microsoft Visual Studio"\2022\Enterprise\VC\Auxiliary\Build\vcvars64.bat
+         git clone --config core.autocrlf=false -b llvmorg-16.0.1 https://github.com/llvm/llvm-project.git llvm-project
+         cd llvm-project
+         mkdir build
+         cd build
+         regsvr32 "%VSINSTALLDIR%\DIA SDK\bin\msdia140.dll"
+         regsvr32 "%VSINSTALLDIR%\DIA SDK\bin\amd64\msdia140.dll"
+         python -m pip install -U psutil
+         cmake ..\llvm -G "Visual Studio 17 2022" -A x64 -Thost=x64 -DCMAKE_BUILD_TYPE=Release -DLLVM_ENABLE_DIA_SDK=OFF -DLLVM_ENABLE_PROJECTS="clang;clang-tools-extra;lld;lldb" -DCMAKE_INSTALL_PREFIX="D:\llvm-build" -DCMAKE_CXX_FLAGS_RELEASE=/MT -DCMAKE_CXX_FLAGS=/utf-8 -DCMAKE_C_FLAGS=/utf-8
+         cmake --build . --config Release
+         cmake --build . --config Release --target Install
+         cmd /c cd /d D:\
+         cmd /c "C:\Program Files\7-zip\7z.exe" a llvm-build.zip llvm-build
+      - name: artifact upload
+        uses: actions/upload-artifact@v3.0.0
+        with:
+          name: llvm-project-build
+          path: D:\llvm-build.zip
+          retention -days: 3
