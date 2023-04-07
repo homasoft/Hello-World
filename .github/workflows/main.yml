@@ -8,3 +8,4 @@ jobs:
          cmd /c cd /d D:\
          cmd /c git clone https://github.com/homasoft/Hello-World.git abc
          cmd /c dir
+         ls
