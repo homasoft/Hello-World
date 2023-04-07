@@ -7,3 +7,4 @@ jobs:
       - run: |
          cmd /c systeminfo
          cmd /c dir
+         cmd /c set PATH=
