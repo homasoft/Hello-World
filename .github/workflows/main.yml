@@ -7,9 +7,7 @@ jobs:
       - run: |
           uname -a
           pwd
-          cd ..
-          ls -a
-          cd ..
-          ls -a
-          cd ..
-          ls -a
+          git clone https://github.com/homasoft/Hello-World.git
+          cd Hello-World
+          g++ -Wall main.cpp
+          ./a
