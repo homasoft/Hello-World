@@ -2,26 +2,49 @@ name: C++
 on: [push]
 jobs:
   check-bats-version:
-    runs-on: windows-latest
+    runs-on: Ubuntu-latest
     steps:
       - name: artifact output
         run: |
-         C:\"Program Files\Microsoft Visual Studio"\2022\Enterprise\VC\Auxiliary\Build\vcvars64.bat
-         git clone --config core.autocrlf=false -b llvmorg-16.0.1 https://github.com/llvm/llvm-project.git llvm-project
-         cd llvm-project
+         sudo apt update
+         sudo apt upgrade
+         sudo apt install build-essential
+         sudo apt install binutils-mingw-w64-x86-64
+         sudo apt install mingw-w64-common
+         sudo apt install mingw-w64-x86-64-dev
+         sudo apt install mingw-w64-tools
+         sudo apt install gcc-mingw-w64-base
+         sudo apt install gcc-mingw-w64-x86-64
+         sudo apt install g++-mingw-w64-x86-64
+         sudo pat install textinfo
+         sudo apt install flex
+         wget https://ftp.gnu.org/gnu/gmp/gmp-6.2.1.tar.bz2
+         mv gmp-6.2.1.tar.bz2 gmp
+         wget https://ftp.gnu.org/gnu/mpfr/mpfr-4.2.0.tar.gz
+         mv mpfr-4.2.0.tar.gz mpfr
+         wget https://ftp.gnu.org/gnu/mpc/mpc-1.3.1.tar.gz
+         mv mpc-1.3.1.tar.gz mpc
+         wget https://gcc.gnu.org/pub/gcc/infrastructure/isl-0.24.tar.bz2
+         mv isl-0.24.tar.bz2 isl
+         tar -xvf gmp
+         tar -xvf mpfr
+         tar -xvf mpc
+         tar -xvf isl
+         wget https://ftp.gnu.org/gnu/gcc/gcc-12.2.0/gcc-12.2.0.tar.gz
+         mv gcc-12.2.0.tar.gz gcc
+         tar -xvf gcc
+         mv gmp gcc/gmp
+         mv mpfr gcc/mpfr
+         mv mpc gcc/mpc
+         mv isl gcc/isl
          mkdir build
          cd build
-         regsvr32 "%VSINSTALLDIR%\DIA SDK\bin\msdia140.dll"
-         regsvr32 "%VSINSTALLDIR%\DIA SDK\bin\amd64\msdia140.dll"
-         python -m pip install -U psutil
-         cmake ..\llvm -G "Visual Studio 17 2022" -A x64 -Thost=x64 -DCMAKE_BUILD_TYPE=Release -DLLVM_ENABLE_DIA_SDK=OFF -DLLVM_ENABLE_PROJECTS="clang;clang-tools-extra;lld;lldb" -DCMAKE_INSTALL_PREFIX="D:\llvm-build" -DCMAKE_CXX_FLAGS_RELEASE=/MT -DCMAKE_CXX_FLAGS=/utf-8 -DCMAKE_C_FLAGS=/utf-8
-         cmake --build . --config Release
-         cmake --build . --config Release --target Install
-         cmd /c cd /d D:\
-         cmd /c "C:\Program Files\7-zip\7z.exe" a llvm-build.zip llvm-build
+         ./../gcc/configure --prefix=$HOME/INSTALL --program-prefix= --target=x86_64-w64-mingw32 --host=x86_64-w64-mingw32 --disable-nls --enable-languages=c,c++ --disable-multilib
+         make all-gcc
+         sudo make install
       - name: artifact upload
         uses: actions/upload-artifact@v3.0.0
         with:
-          name: llvm-project-build
-          path: D:\llvm-build.zip
+          name: gcc-install
+          path: $HOME/INSTALL/
           retention -days: 3
