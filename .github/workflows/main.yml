@@ -25,13 +25,19 @@ jobs:
          mv mpc-1.3.1.tar.gz mpc
          wget https://gcc.gnu.org/pub/gcc/infrastructure/isl-0.24.tar.bz2
          mv isl-0.24.tar.bz2 isl
-         tar -xvf gmp
-         tar -xvf mpfr
-         tar -xvf mpc
-         tar -xvf isl
+         clear
+         tar -xf gmp
+         clear
+         tar -xf mpfr
+         clear
+         tar -xf mpc
+         clear
+         tar -xf isl
+         clear
          wget https://ftp.gnu.org/gnu/gcc/gcc-12.2.0/gcc-12.2.0.tar.gz
          mv gcc-12.2.0.tar.gz gcc
-         tar -xvf gcc
+         tar -xf gcc
+         clear
          mv gmp gcc/gmp
          mv mpfr gcc/mpfr
          mv mpc gcc/mpc
